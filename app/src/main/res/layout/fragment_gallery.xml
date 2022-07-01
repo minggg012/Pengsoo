@@ -3,12 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GalleryFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".GalleryFragment"
+    android:background="#FFEBEB">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mGridView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="gallery" />
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_margin = "4dp"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"/>
+
+
+
 
 </FrameLayout>
