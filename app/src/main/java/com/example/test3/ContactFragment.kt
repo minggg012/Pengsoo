@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_contact.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -18,6 +19,7 @@ class ContactFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         jsonParsing(getJsonString())
+
         return inflater.inflate(R.layout.fragment_contact, container, false)
     }
 
@@ -25,6 +27,16 @@ class ContactFragment : Fragment() {
         super.onStart()
 
         val adapter = ContactsListAdapter(contactsList)
+        adapter.setItemClickListener(object: ContactsListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                var item = contactsList[position]
+
+                Toast.makeText(v.context, "Activity\n${item.name}\n${item.tel}", Toast.LENGTH_SHORT).show()
+                // item.name = item.name + "*"
+                // adapter.notifyDataSetChanged()
+
+            }
+        })
         mRecyclerView.adapter = adapter
     }
 
