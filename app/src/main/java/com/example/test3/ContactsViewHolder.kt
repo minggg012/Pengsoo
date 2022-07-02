@@ -9,6 +9,6 @@ class ContactsViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     fun bind(item: Contacts) {
         view.mName.text = item.name
-        view.mTel.text = item.tel
+        view.mPhone.text = item.phone
     }
 }

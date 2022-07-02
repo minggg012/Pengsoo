@@ -1,5 +1,6 @@
 package com.example.test3
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,11 +30,12 @@ class ContactFragment : Fragment() {
         val adapter = ContactsListAdapter(contactsList)
         adapter.setItemClickListener(object: ContactsListAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
-                var item = contactsList[position]
-
-                Toast.makeText(v.context, "Activity\n${item.name}\n${item.tel}", Toast.LENGTH_SHORT).show()
-                // item.name = item.name + "*"
-                // adapter.notifyDataSetChanged()
+                val nextIntent = Intent(activity, ClickContactActivity::class.java)
+                nextIntent.putExtra("name", contactsList[position].name)
+                nextIntent.putExtra("email", contactsList[position].email)
+                nextIntent.putExtra("phone", contactsList[position].phone)
+                nextIntent.putExtra("website", contactsList[position].website)
+                startActivity(nextIntent)
 
             }
         })
@@ -72,7 +74,8 @@ class ContactFragment : Fragment() {
             for (i in 0..contactArray.length()) {
                 val contactObject: JSONObject = contactArray.getJSONObject(i)
 
-                val contact = Contacts(contactObject.getString("name"), contactObject.getString("email"))
+                val contact = Contacts(contactObject.getString("name"), contactObject.getString("email")
+                    ,contactObject.getString("phone"), contactObject.getString("website"))
                 contactsList.add(contact)
             }
         } catch (e: JSONException) {
