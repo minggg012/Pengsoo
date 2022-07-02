@@ -6,21 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_contact.*
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
+import java.io.InputStream
 
 class ContactFragment : Fragment() {
 
-    private val contactsList : List<Contacts> = listOf(
-        Contacts("john","010-0000-11111"),
-        Contacts("mir","010-1111-2222"),
-        Contacts("delp", "010-3333-4444"),
-        Contacts("jacob", "010-3333-5555"),
-        Contacts("sheu", "010-3333-6666"),
-        Contacts("ma", "010-3333-7777"),
-        Contacts("ham", "010-3333-8889")
-    )
+    private var contactsList = arrayListOf<Contacts>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
+        jsonParsing(getJsonString())
         return inflater.inflate(R.layout.fragment_contact, container, false)
     }
 
@@ -37,5 +34,37 @@ class ContactFragment : Fragment() {
         val frag = ContactFragment()
         frag.arguments = args
         return frag
+    }
+
+    private fun getJsonString(): String {
+        var json = ""
+        try {
+            val inputStream: InputStream = requireContext().assets.open("contacts.json")
+            val fileSize: Int = inputStream.available()
+            val buffer = ByteArray(fileSize)
+            inputStream.read(buffer)
+            inputStream.close()
+            json = String(buffer)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+        }
+        return json
+    }
+
+    private fun jsonParsing(json: String) {
+        contactsList.clear()
+        try {
+            val jsonObject = JSONObject(json)
+            val contactArray = jsonObject.getJSONArray("contacts")
+            println(contactArray)
+            for (i in 0..contactArray.length()) {
+                val contactObject: JSONObject = contactArray.getJSONObject(i)
+
+                val contact = Contacts(contactObject.getString("name"), contactObject.getString("email"))
+                contactsList.add(contact)
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
     }
 }
