@@ -39,6 +39,13 @@ class ContactFragment : Fragment() {
 
             }
         })
+        adapter.setItemLongClickListener(object: ContactsListAdapter.OnItemLongClickListener {
+            override fun onLongClick(v: View, position: Int): Boolean {
+                val item = contactsList[position]
+                Toast.makeText(context, item.json, Toast.LENGTH_LONG).show()
+                return true
+            }
+        })
         mRecyclerView.adapter = adapter
     }
 
@@ -75,7 +82,7 @@ class ContactFragment : Fragment() {
                 val contactObject: JSONObject = contactArray.getJSONObject(i)
 
                 val contact = Contacts(contactObject.getString("name"), contactObject.getString("email")
-                    ,contactObject.getString("phone"), contactObject.getString("website"))
+                    ,contactObject.getString("phone"), contactObject.getString("website"), contactObject.toString())
                 contactsList.add(contact)
             }
         } catch (e: JSONException) {
