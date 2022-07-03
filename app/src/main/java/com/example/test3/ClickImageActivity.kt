@@ -9,11 +9,13 @@ class ClickImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_click_image)
-        imageView = findViewById(R.id.mImage)
+        imageView = findViewById(R.id.imageView)
         val intent = intent
         if (intent.extras != null) {
-            val selectedImage = intent.getIntExtra("image", 0)
-            imageView?.setImageResource(selectedImage)
+            val selectedImage = intent.getParcelableExtra<GalleryFragment.Images>("image")
+            if (selectedImage != null) {
+                imageView?.setImageResource(selectedImage.image)
+            }
         }
     }
 }

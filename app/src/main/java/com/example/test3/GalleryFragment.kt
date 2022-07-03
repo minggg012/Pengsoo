@@ -1,14 +1,16 @@
 package com.example.test3
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_gallery.*
+import java.io.Serializable
 
 class GalleryFragment : Fragment() {
     private var imagesList: List<Images> = listOf(
@@ -35,17 +37,13 @@ class GalleryFragment : Fragment() {
         mGridView.layoutManager = manager
         val adapter = GalleryAdapter(imagesList)
 
-//        adapter.setItemClickListener(object : GalleryAdapter.OnItemClickListener{
-//            override fun onClick(v: View, position: Int) {
-//                val selectedImage = imagesList[position]
-//                startActivity(
-//                    Intent(activity, ClickImageActivity.class).putExtra(
-//                        "image",
-//                        selectedImage
-//                    )
-//                )
-//            }
-//        })
+        adapter.setItemClickListener(object: GalleryAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val selectedImage = imagesList[position]
+                val intent = Intent(activity, ClickImageActivity::class.java)
+                startActivity(intent.putExtra("image", selectedImage))
+            }
+        })
         mGridView.adapter = adapter
     }
 
@@ -55,64 +53,11 @@ class GalleryFragment : Fragment() {
         frag.arguments = args
         return frag
     }
-
-    inner class Images (val image: Int) {}
-
-    inner class GalleryViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private var view : View = v
-
-        val imagee: ImageView = view.findViewById(R.id.mImage)
-
-//        fun bind(onClickListner: View.OnClickListener) {
-//            view.setOnClickListener(onClickListner)
-//        }
+    @Parcelize
+    data class Images (val image: Int) : Parcelable
 
 
 
 
 
-//        fun bind(item: Images) {
-//            view.mimage.imageAlpha= item.image
-//        }
-    }
-
-
-    inner class GalleryAdapter(private val imagesPhoto: List<Images>) :
-        RecyclerView.Adapter<GalleryViewHolder>() {
-
-        override fun getItemCount(): Int {
-            return imagesPhoto.size
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
-            val inflatedView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_gallery, parent, false)
-            return GalleryViewHolder(inflatedView)
-        }
-
-        override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
-            val item = imagesPhoto[position]
-//            val adapter = this
-
-
-            holder.imagee.setImageResource(item.image)
-//            holder.apply {
-//                bind(item)
-//            }
-//            holder.itemView.setOnClickListener {
-//                itemClickListener.onClick(it, position)
-//            }
-
-        }
-//        interface OnItemClickListener {
-//            fun onClick(v: View, position: Int)
-//        }
-//        private lateinit var itemClickListener : OnItemClickListener
-//
-//        fun setItemClickListener(itemClickListener: OnItemClickListener) {
-//            this.itemClickListener = itemClickListener
-//        }
-
-
-    }
 }
