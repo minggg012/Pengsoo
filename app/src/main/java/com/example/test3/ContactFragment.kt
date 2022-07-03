@@ -36,7 +36,6 @@ class ContactFragment : Fragment() {
                 nextIntent.putExtra("phone", contactsList[position].phone)
                 nextIntent.putExtra("website", contactsList[position].website)
                 startActivity(nextIntent)
-
             }
         })
         adapter.setItemLongClickListener(object: ContactsListAdapter.OnItemLongClickListener {

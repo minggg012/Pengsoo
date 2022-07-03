@@ -16,7 +16,7 @@ class ContactsListAdapter(private val itemList : List<Contacts>) : RecyclerView.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val inflatedView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_contacts, parent, false)
-        return ContactsViewHolder(inflatedView);
+        return ContactsViewHolder(inflatedView)
     }
 
     // put content inside the view

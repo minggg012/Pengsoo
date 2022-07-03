@@ -1,30 +1,38 @@
 package com.example.test3
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import kotlinx.android.synthetic.main.item_extra.view.*
+import androidx.recyclerview.widget.RecyclerView
 
-class ExtraEntryAdapter(val context: Context, private val itemList: List<List<ExtraEntry>>): BaseAdapter() {
+class ExtraEntryAdapter(private val itemList: List<ExtraEntry>): RecyclerView.Adapter<ExtraViewHolder>() {
 
-    override fun getCount(): Int {
-        return itemList.size * itemList[0].size
+    override fun getItemCount(): Int {
+        return itemList.size
     }
 
-    override fun getItem(p0: Int): Any {
-        return itemList[p0 / itemList[0].size][p0 % itemList[0].size]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExtraViewHolder {
+        val inflatedView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_extra, parent, false)
+        return ExtraViewHolder(inflatedView)
     }
 
-    override fun getItemId(p0: Int): Long {
-        return 0
+    override fun onBindViewHolder(holder: ExtraViewHolder, position: Int) {
+        val item = itemList[position]
+
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
+        holder.apply {
+            bind(item)
+        }
     }
 
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_extra, null)
-        view.mEntry.setImageResource(R.drawable.ic_baseline_person_24)
-
-        return view
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+    private lateinit var itemClickListener: OnItemClickListener
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 }
