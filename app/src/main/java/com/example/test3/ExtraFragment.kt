@@ -14,7 +14,7 @@ import java.security.KeyStore
 
 class ExtraFragment : Fragment() {
 
-    private var entryList = arrayListOf<ExtraEntry>()
+    private var entryList = ArrayList<ExtraEntry>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         initMap()
@@ -24,12 +24,17 @@ class ExtraFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
+        initMap()
+        for (i in 0 until 100) {
+            val n = entryList[i].numOfMine
+            println("$i " + "$n\n")
+        }
         val adapter = ExtraEntryAdapter(entryList)
         adapter.setItemClickListener(object: ExtraEntryAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
                 v.mEntry.setImageResource(R.drawable.a)
+
             }
         })
 
@@ -52,9 +57,45 @@ class ExtraFragment : Fragment() {
 
     private fun initMap() {
         entryList.clear()
-        for (i in 0 until 140) {
-            val entry = ExtraEntry()
+        for (i in 0 until 100) {
+            val entry = ExtraEntry(true, false, 0)
             entryList.add(entry)
         }
+
+        val range = (0..99)
+        for (i in 0 until 11) {
+            var index = range.random()
+            while (entryList[index].numOfMine == -1) {
+                index = range.random()
+            }
+            entryList[index].numOfMine = -1
+        }
+        for (i in 0 until 100) {
+            val x = i / 10
+            val y = i % 10
+            if (entryList[i].numOfMine == -1) {
+
+            }
+            else {
+                entryList[i].numOfMine = checkAround(x, y, entryList)
+            }
+        }
+
+
+    }
+    fun checkAround(x: Int, y: Int, list: ArrayList<ExtraEntry>) : Int {
+        var count = 0
+        for (i in x-1 until x+2) {
+            for (j in y-1 until y+2) {
+                if (i in 0..9 && j in 0..9) {
+                    val index = i*10 + j
+                    if (list[index].numOfMine == -1) {
+                        count++
+                    }
+                }
+            }
+        }
+
+        return count
     }
 }

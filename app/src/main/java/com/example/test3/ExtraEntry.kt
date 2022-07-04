@@ -4,4 +4,4 @@ package com.example.test3
 //    LAND, MINE, FLAG
 //}
 
-class ExtraEntry(val isCovered: Boolean, val isFlag: Boolean, val numOfMine: Int)
+class ExtraEntry(var isCovered: Boolean, var isFlag: Boolean, var numOfMine: Int)
