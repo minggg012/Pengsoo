@@ -33,7 +33,13 @@ class ExtraFragment : Fragment() {
         adapter.setItemClickListener(object: ExtraEntryAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 entryList[position].clickEntry(requireContext(), adapter, entryList, position)
+            }
+        })
+        adapter.setItemLongClickListener(object: ExtraEntryAdapter.OnItemLongClickListener {
+            override fun onLongClick(v: View, position: Int): Boolean {
                 Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
+                entryList[position].longClickEntry(requireContext(), adapter, entryList, position)
+                return true
             }
         })
 

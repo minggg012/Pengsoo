@@ -23,6 +23,9 @@ class ExtraEntryAdapter(private val itemList: List<ExtraEntry>): RecyclerView.Ad
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
+        holder.itemView.setOnLongClickListener {
+            itemLongClickListener.onLongClick(it, position)
+        }
         holder.apply {
             bind(item)
         }
@@ -34,5 +37,13 @@ class ExtraEntryAdapter(private val itemList: List<ExtraEntry>): RecyclerView.Ad
     private lateinit var itemClickListener: OnItemClickListener
     fun setItemClickListener(itemClickListener: OnItemClickListener) {
         this.itemClickListener = itemClickListener
+    }
+
+    interface OnItemLongClickListener {
+        fun onLongClick(v: View, position: Int): Boolean
+    }
+    private lateinit var itemLongClickListener: OnItemLongClickListener
+    fun setItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener
     }
 }
