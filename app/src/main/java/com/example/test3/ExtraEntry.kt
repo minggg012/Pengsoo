@@ -12,6 +12,5 @@ import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 import kotlin.math.exp
 
-class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var numOfMine: Int = 0, var numOfEntry: Int = 0) {
-}
+class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var numOfMine: Int = 0, var failImage: Int = 0, var succeedImage: Int = 0)
 

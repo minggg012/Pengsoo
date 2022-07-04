@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_extra.*
 import kotlinx.android.synthetic.main.item_extra.view.*
 import java.security.KeyStore
+import kotlin.concurrent.timer
 
 class ExtraFragment : Fragment() {
 
@@ -19,8 +20,8 @@ class ExtraFragment : Fragment() {
     var failList = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        initMap()
+        extraEntryList = ExtraEntryList(entryList, 0, 0)
+        initMap(null)
 
         return inflater.inflate(R.layout.fragment_extra, container, false)
 
@@ -36,12 +37,12 @@ class ExtraFragment : Fragment() {
         val adapter = ExtraEntryAdapter(entryList)
         adapter.setItemClickListener(object: ExtraEntryAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                extraEntryList.clickEntry(requireContext(), adapter, entryList, position)
+                extraEntryList.clickEntry(v, position, requireContext(), adapter, entryList)
             }
         })
         adapter.setItemLongClickListener(object: ExtraEntryAdapter.OnItemLongClickListener {
             override fun onLongClick(v: View, position: Int): Boolean {
-                extraEntryList.longClickEntry(requireContext(), adapter, entryList, position)
+                extraEntryList.longClickEntry(v, position, requireContext(), adapter, entryList)
                 return true
             }
         })
@@ -55,7 +56,8 @@ class ExtraFragment : Fragment() {
         grid_test.adapter = adapter
 
         reset.setOnClickListener {
-            Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "RESET!!!", Toast.LENGTH_SHORT).show()
+            initMap(adapter)
         }
 
     }
@@ -68,15 +70,22 @@ class ExtraFragment : Fragment() {
         return frag
     }
 
-    private fun initMap() {
-        entryList.clear()
+    private fun initMap(adapter: ExtraEntryAdapter?) {
+        extraEntryList.init()
+
+        timer(period = 100) {
+
+        }
         for (i in 0 until 100) {
             val num = i+1
             val z = "00$num"
             val zz = z.substring(z.length-3 until z.length)
-            val resource = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
-            val entry = ExtraEntry(true, false, 0, resource)
+            val fail = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
+            val succeed = resources.getIdentifier("@drawable/t_"+zz, "drawable", requireActivity().packageName)
+            val entry = ExtraEntry(true, false, 0, fail, succeed)
             entryList.add(entry)
+            if (adapter != null)
+                adapter.notifyItemChanged(i)
         }
 
         val range = (0..99)

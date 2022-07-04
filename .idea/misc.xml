@@ -6,8 +6,10 @@
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/activity_click_image.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/activity_main.xml" value="0.12" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/fragment_contact.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/fragment_extra.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/fragment_gallery.xml" value="0.18" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/item_contacts.xml" value="0.125" />
+        <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/item_extra.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/item_gallery.xml" value="0.1" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/layout/row_items.xml" value="0.12447916666666667" />
         <entry key="..\:/Users/82103/AndroidStudioProjects/diq/app/src/main/res/menu/menu.xml" value="0.1" />
@@ -17,6 +19,7 @@
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-2/app/src/main/res/layout/fragment_extra.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-2/app/src/main/res/layout/fragment_gallery.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-2/app/src/main/res/layout/item_contacts.xml" value="0.1" />
+<<<<<<< HEAD
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-4/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2595" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-4/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.198" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-4/app/src/main/res/layout/activity_click_contact.xml" value="0.23007246376811594" />
@@ -36,6 +39,8 @@
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-5/app/src/main/res/layout/item_contacts.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-5/app/src/main/res/layout/item_extra.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/LG/AndroidStudioProjects/test1-5/app/src/main/res/layout/item_gallery.xml" value="0.25416666666666665" />
+=======
+>>>>>>> 2811c597a4562ef13b5811c39d1ca7b4a2a5e8b7
       </map>
     </option>
   </component>

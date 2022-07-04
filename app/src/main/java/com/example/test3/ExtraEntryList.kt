@@ -1,13 +1,21 @@
 package com.example.test3
 
+import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_extra.view.*
 
-class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, var numOfFlag: Int) {
+class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDiscovered: Int, var numOfFlag: Int) {
 
-    fun clickEntry (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
+    fun init () {
+        entryList.clear()
+        numOfDiscovered = 0
+        numOfFlag = 0
+    }
+    fun clickEntry (v: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
         val item = entryList[position]
         if (!item.isCovered) return
 
@@ -16,9 +24,12 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
             explosion (context, adapter, entryList, position, 1)
         else
             recursiveDiscover(context, adapter, entryList, position)
+//        if (numOfDiscovered == 90) {
+//            Succeed(context, adapter, entryList,0)
+//        }
     }
 
-    fun longClickEntry (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
+    fun longClickEntry (v: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
         val item = entryList[position]
         if (!item.isCovered) return
 
@@ -32,6 +43,7 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
             numOfFlag += 1
         }
         adapter.notifyItemChanged(position)
+        // v.remaining_mine.setText((10-numOfFlag).toString())
     }
 
 
@@ -61,9 +73,20 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
                 Looper.getMainLooper()).postDelayed({explosion(context,adapter,entryList,index,count+1)}, 200)
         }
 
+    }
+    private fun Succeed(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
+        if (position == 100) {
+            return
+        }
+        else {
+            entryList[position].isCovered = false
+            entryList[position].numOfMine = 11
 
+            adapter.notifyItemChanged(position)
 
-
+            Handler(
+                Looper.getMainLooper()).postDelayed({Succeed(context,adapter,entryList,position+1)}, 30)
+        }
     }
     private fun Fail(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
         if (position == 100) {
@@ -76,7 +99,7 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
             adapter.notifyItemChanged(position)
 
             Handler(
-                Looper.getMainLooper()).postDelayed({Fail(context,adapter,entryList,position+1)}, 50)
+                Looper.getMainLooper()).postDelayed({Fail(context,adapter,entryList,position+1)}, 30)
         }
     }
 
@@ -90,7 +113,11 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
         // else
         entryList[position].isCovered = false
         numOfDiscovered += 1
+        println("----------------- $numOfDiscovered------------------")
         adapter.notifyItemChanged(position)
+        if (numOfDiscovered == 90) {
+            Succeed(context, adapter, entryList,0)
+        }
 
         if (entryList[position].numOfMine != 0) return
 
