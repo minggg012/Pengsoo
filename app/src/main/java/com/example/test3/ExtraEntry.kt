@@ -1,14 +1,18 @@
 package com.example.test3
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.HandlerCompat
+import androidx.core.os.HandlerCompat.postDelayed
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 import kotlin.math.exp
 
-class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var numOfMine: Int = 0) {
+class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var numOfMine: Int = 0, var numOfEntry: Int = 0) {
 
     fun clickEntry (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
         val item = entryList[position]
@@ -41,6 +45,7 @@ class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var
             entryList[position].isCovered = false
             adapter.notifyItemChanged(position)
             entryList[position].numOfMine = -2
+            Fail(context, adapter, entryList, 0)
             return
         }
         else {
@@ -52,12 +57,27 @@ class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var
             while (entryList[index].numOfMine != -1) {
                 index = range.random()
             }
-            explosion(context,adapter,entryList,index,count+1)
+            Handler(
+            Looper.getMainLooper()).postDelayed({explosion(context,adapter,entryList,index,count+1)}, 200)
         }
 
 
 
 
+    }
+    private fun Fail(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
+        if (position == 100) {
+            return
+        }
+        else {
+            entryList[position].isCovered = false
+            entryList[position].numOfMine = 10
+
+            adapter.notifyItemChanged(position)
+
+            Handler(
+                Looper.getMainLooper()).postDelayed({Fail(context,adapter,entryList,position+1)}, 50)
+        }
     }
 
     private fun recursiveDiscover (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {

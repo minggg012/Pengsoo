@@ -15,16 +15,19 @@ import java.security.KeyStore
 class ExtraFragment : Fragment() {
 
     private var entryList = ArrayList<ExtraEntry>()
+    var failList = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         initMap()
 
         return inflater.inflate(R.layout.fragment_extra, container, false)
+
     }
 
     override fun onStart() {
         super.onStart()
-        initMap()
+        //initMap()
         for (i in 0 until 100) {
             val n = entryList[i].numOfMine
             println("$i " + "$n\n")
@@ -63,7 +66,11 @@ class ExtraFragment : Fragment() {
     private fun initMap() {
         entryList.clear()
         for (i in 0 until 100) {
-            val entry = ExtraEntry(true, false, 0)
+            val num = i+1
+            val z = "00$num"
+            val zz = z.substring(z.length-3 until z.length)
+            val resource = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
+            val entry = ExtraEntry(true, false, 0, resource)
             entryList.add(entry)
         }
 

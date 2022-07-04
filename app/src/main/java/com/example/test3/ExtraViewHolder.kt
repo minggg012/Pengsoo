@@ -3,6 +3,7 @@ package com.example.test3
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_extra.view.*
+import java.security.AccessController.getContext
 
 class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
     var view: View = v
@@ -32,6 +33,10 @@ class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
                 6 -> view.mEntry.setImageResource(R.drawable.six)
                 7 -> view.mEntry.setImageResource(R.drawable.seven)
                 8 -> view.mEntry.setImageResource(R.drawable.eight)
+                10 -> {
+                    val i = item.numOfEntry
+                    view.mEntry.setImageResource(i)
+                }
                 else -> view.mEntry.setImageResource(R.drawable.ic_baseline_person_24)
             }
         }
