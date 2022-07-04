@@ -8,6 +8,7 @@ class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
     var view: View = v
 
     fun bind(item: ExtraEntry) {
-        view.mEntry.setImageResource(R.drawable.ic_baseline_person_24)
+        if (item.isCovered) view.mEntry.setImageResource(R.drawable.ic_baseline_person_24)
+        else view.mEntry.setImageResource(R.drawable.a)
     }
 }

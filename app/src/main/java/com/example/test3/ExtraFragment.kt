@@ -28,8 +28,7 @@ class ExtraFragment : Fragment() {
         val adapter = ExtraEntryAdapter(entryList)
         adapter.setItemClickListener(object: ExtraEntryAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
-                v.mEntry.setImageResource(R.drawable.a)
+                entryList[position].clickEntry(requireContext(), adapter, entryList, position)
             }
         })
 
