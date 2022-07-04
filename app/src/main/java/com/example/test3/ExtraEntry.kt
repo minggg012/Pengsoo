@@ -3,6 +3,10 @@ package com.example.test3
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
+import kotlin.math.exp
 
 class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var numOfMine: Int = 0) {
 
@@ -12,7 +16,7 @@ class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var
 
         // else
         if (item.numOfMine == -1)
-            explosion (context, adapter, entryList)
+            explosion (context, adapter, entryList, position, 1)
         else
             recursiveDiscover(context, adapter, entryList, position)
     }
@@ -27,8 +31,33 @@ class ExtraEntry(var isCovered: Boolean = true, var isFlag: Boolean = false, var
     }
 
 
-    private fun explosion (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
-        Toast.makeText(context, "explosion!!!", Toast.LENGTH_SHORT).show()
+    private fun explosion (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int, count: Int) {
+
+        val range = (0..99)
+        if (count > 10 || count < 1) {
+            return
+        }
+        if (count == 10) {
+            entryList[position].isCovered = false
+            adapter.notifyItemChanged(position)
+            entryList[position].numOfMine = -2
+            return
+        }
+        else {
+            entryList[position].isCovered = false
+            adapter.notifyItemChanged(position)
+            entryList[position].numOfMine = -2
+            //Toast.makeText(context, "explosion!!!", Toast.LENGTH_SHORT).show()
+            var index = range.random()
+            while (entryList[index].numOfMine != -1) {
+                index = range.random()
+            }
+            explosion(context,adapter,entryList,index,count+1)
+        }
+
+
+
+
     }
 
     private fun recursiveDiscover (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {

@@ -20,7 +20,7 @@ class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
         if (!item.isCovered) { // covered
             val index = item.numOfMine
             when(index) {
-                -1 -> {
+                -2 -> {
                     view.mEntry.setImageResource(R.drawable.bomb)
                 }
                 0 -> view.mEntry.setImageResource(R.drawable.zero)

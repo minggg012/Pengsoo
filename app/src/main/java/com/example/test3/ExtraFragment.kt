@@ -68,7 +68,7 @@ class ExtraFragment : Fragment() {
         }
 
         val range = (0..99)
-        for (i in 0 until 11) {
+        for (i in 0 until 10) {
             var index = range.random()
             while (entryList[index].numOfMine == -1) {
                 index = range.random()
