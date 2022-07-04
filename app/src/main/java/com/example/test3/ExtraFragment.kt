@@ -15,6 +15,7 @@ import java.security.KeyStore
 class ExtraFragment : Fragment() {
 
     private var entryList = ArrayList<ExtraEntry>()
+    private var extraEntryList = ExtraEntryList(entryList, 0, 0)
     var failList = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,13 +36,12 @@ class ExtraFragment : Fragment() {
         val adapter = ExtraEntryAdapter(entryList)
         adapter.setItemClickListener(object: ExtraEntryAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                entryList[position].clickEntry(requireContext(), adapter, entryList, position)
+                extraEntryList.clickEntry(requireContext(), adapter, entryList, position)
             }
         })
         adapter.setItemLongClickListener(object: ExtraEntryAdapter.OnItemLongClickListener {
             override fun onLongClick(v: View, position: Int): Boolean {
-                Toast.makeText(context, position.toString(), Toast.LENGTH_SHORT).show()
-                entryList[position].longClickEntry(requireContext(), adapter, entryList, position)
+                extraEntryList.longClickEntry(requireContext(), adapter, entryList, position)
                 return true
             }
         })
