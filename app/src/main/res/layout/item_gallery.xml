@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/mImage"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop" />
