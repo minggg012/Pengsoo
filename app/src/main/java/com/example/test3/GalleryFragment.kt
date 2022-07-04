@@ -21,6 +21,10 @@ class GalleryFragment : Fragment() {
         Images(R.drawable.u), Images(R.drawable.v)
     )
 
+    private var informList = arrayOf(
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v"
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +44,9 @@ class GalleryFragment : Fragment() {
         adapter.setItemClickListener(object: GalleryAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 val selectedImage = imagesList[position]
+                val informOfImage = informList[position]
                 val intent = Intent(activity, ClickImageActivity::class.java)
+                intent.putExtra("inform", informOfImage)
                 startActivity(intent.putExtra("image", selectedImage))
             }
         })
