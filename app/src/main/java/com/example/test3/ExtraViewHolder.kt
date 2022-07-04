@@ -8,17 +8,21 @@ class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
     var view: View = v
 
     fun bind(item: ExtraEntry) {
+
         if (item.isCovered) { // not covered
 
         }
         else if (item.isFlag) { // flag 표시
-            view.mEntry.setImageResource(R.drawable.a)
+            view.mEntry.setImageResource(R.drawable.flag)
         }
         else { // covered
             val index = item.numOfMine
             when(index) {
-                -1 -> view.mEntry.setImageResource(R.drawable.b)
-                0 -> view.mEntry.setImageResource(R.drawable.c)
+                -1 -> {
+                    view.mEntry.setImageResource(R.drawable.bomb)
+
+                }
+                0 -> view.mEntry.setImageResource(R.drawable.zero)
                 1 -> view.mEntry.setImageResource(R.drawable.one)
                 2 -> view.mEntry.setImageResource(R.drawable.two)
                 3 -> view.mEntry.setImageResource(R.drawable.three)
