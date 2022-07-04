@@ -31,8 +31,6 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
             item.isFlag = true
             numOfFlag += 1
         }
-
-        Toast.makeText(context, "current flags: $numOfFlag", Toast.LENGTH_SHORT).show()
         adapter.notifyItemChanged(position)
     }
 
@@ -92,7 +90,6 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
         // else
         entryList[position].isCovered = false
         numOfDiscovered += 1
-        Toast.makeText(context, "current discovers: $numOfDiscovered", Toast.LENGTH_SHORT).show()
         adapter.notifyItemChanged(position)
 
         if (entryList[position].numOfMine != 0) return

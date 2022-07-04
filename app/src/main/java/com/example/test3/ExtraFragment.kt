@@ -53,6 +53,11 @@ class ExtraFragment : Fragment() {
         }
         grid_test.layoutManager = myGridLayoutManager
         grid_test.adapter = adapter
+
+        reset.setOnClickListener {
+            Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     fun newInstant(): ExtraFragment

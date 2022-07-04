@@ -1,16 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ContactFragment">
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
+    tools:context=".ExtraFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
         android:id="@+id/grid_test"
+        android:paddingTop="220dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Remaining\nMines"
+        android:gravity="center"
+
+        app:layout_constraintLeft_toLeftOf="@id/remaining_mine"
+        app:layout_constraintRight_toRightOf="@id/remaining_mine"
+        app:layout_constraintBottom_toTopOf="@id/remaining_mine"
+        />
+
+    <TextView
+        android:id="@+id/remaining_mine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="10"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Passed\nTime"
+        android:gravity="center"
+
+        app:layout_constraintLeft_toLeftOf="@id/passed_time"
+        app:layout_constraintRight_toRightOf="@id/passed_time"
+        app:layout_constraintBottom_toTopOf="@id/passed_time"
+        />
+
+    <TextView
+        android:id="@+id/passed_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text=":"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        />
+
+    <TextView
+        android:id="@+id/passed_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="11"
+        android:gravity="center"
+
+        app:layout_constraintRight_toLeftOf="@id/passed_time"
+        app:layout_constraintTop_toTopOf="@id/passed_time"
+        />
+
+    <TextView
+        android:id="@+id/passed_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="11"
+        android:gravity="center"
+
+        app:layout_constraintLeft_toRightOf="@id/passed_time"
+        app:layout_constraintTop_toTopOf="@id/passed_time"
+        />
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="50dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.18" >
+        <ImageView
+            android:id="@+id/reset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/k"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
