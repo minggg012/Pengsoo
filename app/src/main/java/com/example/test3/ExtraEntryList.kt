@@ -16,6 +16,9 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
             explosion (context, adapter, entryList, position, 1)
         else
             recursiveDiscover(context, adapter, entryList, position)
+        if (numOfDiscovered == 90) {
+            Succeed(context, adapter, entryList,0)
+        }
     }
 
     fun longClickEntry (context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
@@ -67,6 +70,20 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
 
 
     }
+    private fun Succeed(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
+        if (position == 100) {
+            return
+        }
+        else {
+            entryList[position].isCovered = false
+            entryList[position].numOfMine = 11
+
+            adapter.notifyItemChanged(position)
+
+            Handler(
+                Looper.getMainLooper()).postDelayed({Succeed(context,adapter,entryList,position+1)}, 30)
+        }
+    }
     private fun Fail(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
         if (position == 100) {
             return
@@ -78,7 +95,7 @@ class ExtraEntryList(val entryList: List<ExtraEntry>, var numOfDiscovered: Int, 
             adapter.notifyItemChanged(position)
 
             Handler(
-                Looper.getMainLooper()).postDelayed({Fail(context,adapter,entryList,position+1)}, 50)
+                Looper.getMainLooper()).postDelayed({Fail(context,adapter,entryList,position+1)}, 30)
         }
     }
 

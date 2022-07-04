@@ -34,7 +34,11 @@ class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
                 7 -> view.mEntry.setImageResource(R.drawable.seven)
                 8 -> view.mEntry.setImageResource(R.drawable.eight)
                 10 -> {
-                    val i = item.numOfEntry
+                    val i = item.failImage
+                    view.mEntry.setImageResource(i)
+                }
+                11 -> {
+                    val i = item.succeedImage
                     view.mEntry.setImageResource(i)
                 }
                 else -> view.mEntry.setImageResource(R.drawable.ic_baseline_person_24)

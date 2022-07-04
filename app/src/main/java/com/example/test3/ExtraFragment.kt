@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_extra.*
 import kotlinx.android.synthetic.main.item_extra.view.*
 import java.security.KeyStore
+import kotlin.concurrent.timer
 
 class ExtraFragment : Fragment() {
 
@@ -19,7 +20,7 @@ class ExtraFragment : Fragment() {
     var failList = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        extraEntryList = ExtraEntryList(entryList, 0, 0)
         initMap()
 
         return inflater.inflate(R.layout.fragment_extra, container, false)
@@ -65,12 +66,16 @@ class ExtraFragment : Fragment() {
 
     private fun initMap() {
         entryList.clear()
+        timer(period = 100) {
+
+        }
         for (i in 0 until 100) {
             val num = i+1
             val z = "00$num"
             val zz = z.substring(z.length-3 until z.length)
-            val resource = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
-            val entry = ExtraEntry(true, false, 0, resource)
+            val fail = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
+            val succeed = resources.getIdentifier("@drawable/t_"+zz, "drawable", requireActivity().packageName)
+            val entry = ExtraEntry(true, false, 0, fail, succeed)
             entryList.add(entry)
         }
 

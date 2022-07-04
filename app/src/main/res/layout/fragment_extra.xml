@@ -9,7 +9,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
+        android:paddingTop="150dp"
+        android:paddingBottom="70dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+
         android:id="@+id/grid_test"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
