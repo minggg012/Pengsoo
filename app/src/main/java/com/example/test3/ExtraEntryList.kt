@@ -7,6 +7,9 @@ import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_extra.view.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.timerTask
 
 class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDiscovered: Int, var numOfFlag: Int) {
 
@@ -76,6 +79,10 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             return
         }
         else {
+            if (position == 1) {
+                Toast.makeText(context, "Succeed!!!", Toast.LENGTH_SHORT).show()
+                timerTask?.cancel()
+            }
             entryList[position].isCovered = false
             entryList[position].numOfMine = 11
 
@@ -90,6 +97,10 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             return
         }
         else {
+            if (position == 1) {
+                Toast.makeText(context, "Fail!!!", Toast.LENGTH_SHORT).show()
+                timerTask?.cancel()
+            }
             entryList[position].isCovered = false
             entryList[position].numOfMine = 10
 
