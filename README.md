@@ -1,13 +1,21 @@
 # Pengsoo
+> 2022 여름 몰입캠프 2분반 윤창호 김민
 - 펭수를 컨셉으로 하여 연락처, 갤러리, 지뢰찾기 게임을 구현한 어플리케이션입니다.
 
 <img src = "https://user-images.githubusercontent.com/85171279/177310695-7c8e90b0-00b2-48cd-bc1e-dc50ffdfffaa.jpg" width = "180" height = "320"/> <img src = "https://user-images.githubusercontent.com/85171279/177288151-a5273a4c-9d1a-48cd-860e-54a07a03a961.jpg" width="180" height = "320"/> <img src = "https://user-images.githubusercontent.com/85171279/177288158-fc4e38c8-45e0-4f93-995d-85d563159f3f.jpg" width = "180" height = "320"/>
 
 
 ## A. 개발 팀원
-- UNIST 컴퓨터공학과 윤창호
-- KAIST 전산학부 김민
-## B. 프로젝트 설명
+- UNIST 컴퓨터공학과 [윤창호](https://github.com/ho9938)
+- KAIST 전산학부 [김민](https://github.com/minggg012)
+
+## B. 개발 환경
+- OS: Android (targetSdk: 31)
+- Language: Kotlin
+- IDE: Android Studio
+- Target Device: Galaxy S7
+
+## C. 프로젝트 설명
 ### 1. TAB 1 : Contacts
 <img src = "https://user-images.githubusercontent.com/85171279/177310839-e3f91364-1453-45c9-b7fc-94df2b6635a7.jpg" width = "180" height = "320"/> <img src = "https://user-images.githubusercontent.com/85171279/177310866-f444320d-3879-4b79-92d8-f91ba4aeead3.jpg" width = "180" height = "320"/> <img src = "https://user-images.githubusercontent.com/85171279/177310880-3b200e70-ea30-4494-851f-e4593739b14a.jpg" width = "180" height = "320"/>
 
