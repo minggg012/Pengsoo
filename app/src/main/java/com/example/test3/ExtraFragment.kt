@@ -92,7 +92,6 @@ class ExtraFragment : Fragment() {
                 Toast.makeText(context, "RESET", Toast.LENGTH_SHORT).show()
                 initMap(adapter)
             }
-
         }
     }
 

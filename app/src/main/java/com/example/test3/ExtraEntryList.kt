@@ -24,10 +24,11 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
         if (item.isFlag) return
 
         // else
-        onEvent = true
-        println("------------------------onEvent = true------------------------")
-        if (item.numOfMine == -1)
+        if (item.numOfMine == -1) {
+            onEvent = true
+            println("------------------------onEvent = true------------------------")
             explosion(context, adapter, entryList, position, 1)
+        }
         else
             recursiveDiscover(context, adapter, entryList, position)
     }
@@ -81,12 +82,13 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
         if (position == 100) {
             onEvent = false
             println("------------------------onEvent = false------------------------")
-            return
-        }
+            return        }
         else {
             if (position == 1) {
                 Toast.makeText(context, "SUCCEED", Toast.LENGTH_SHORT).show()
                 timerTask?.cancel()
+                onEvent = true
+                println("------------------------onEvent = true------------------------")
             }
             entryList[position].isCovered = false
             entryList[position].numOfMine = 11
@@ -97,6 +99,7 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
                 Looper.getMainLooper()).postDelayed({Succeed(context,adapter,entryList,position+1)}, 30)
         }
     }
+
     private fun Fail(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
         if (position == 100) {
             onEvent = false
@@ -114,7 +117,8 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             adapter.notifyItemChanged(position)
 
             Handler(
-                Looper.getMainLooper()).postDelayed({Fail(context,adapter,entryList,position+1)}, 30)
+                Looper.getMainLooper()).postDelayed({
+                    Fail(context,adapter,entryList,position+1)}, 30)
         }
     }
 
