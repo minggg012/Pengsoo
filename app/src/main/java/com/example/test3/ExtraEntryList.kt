@@ -21,6 +21,7 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
     fun clickEntry (rootView: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
         val item = entryList[position]
         if (!item.isCovered) return
+        if (item.isFlag) return
 
         // else
         onEvent = true
