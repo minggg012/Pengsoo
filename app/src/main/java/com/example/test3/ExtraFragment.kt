@@ -89,7 +89,7 @@ class ExtraFragment : Fragment() {
 
         reset.setOnClickListener {
             if (!extraEntryList.onEvent) {
-                Toast.makeText(context, "RESET!!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "RESET", Toast.LENGTH_SHORT).show()
                 initMap(adapter)
             }
 

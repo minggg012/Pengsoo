@@ -85,7 +85,7 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
         }
         else {
             if (position == 1) {
-                Toast.makeText(context, "Succeed!!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "SUCCEED", Toast.LENGTH_SHORT).show()
                 timerTask?.cancel()
             }
             entryList[position].isCovered = false
@@ -105,7 +105,7 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
         }
         else {
             if (position == 1) {
-                Toast.makeText(context, "Fail!!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "FAIL", Toast.LENGTH_SHORT).show()
                 timerTask?.cancel()
             }
             entryList[position].isCovered = false
