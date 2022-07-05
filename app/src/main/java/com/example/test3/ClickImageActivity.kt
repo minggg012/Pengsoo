@@ -40,10 +40,10 @@ class ClickImageActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.delete -> {
-                Toast.makeText(this, "you cannot delete 펭수...", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, "I cannot... too....", Toast.LENGTH_SHORT).show()
-            }
+//            R.id.delete -> {
+//                Toast.makeText(this, "Do you want to delete 펭수...?", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Sorry, you cannot.", Toast.LENGTH_SHORT).show()
+//            }
             R.id.inform -> AlertDialog.Builder(this).run {
                 setTitle("information")
                 setMessage(informOfImage)
