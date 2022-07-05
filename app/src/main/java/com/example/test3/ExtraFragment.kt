@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_extra.*
+import kotlinx.android.synthetic.main.fragment_extra.view.*
 import kotlinx.android.synthetic.main.item_extra.view.*
 import java.security.KeyStore
 import java.util.*
@@ -70,6 +71,7 @@ class ExtraFragment : Fragment() {
             passed_minute.text = "0"
             passed_second.text = "0"
             initMap(adapter)
+            rootView.remaining_mine.setText("10")
         }
 
     }
@@ -86,6 +88,7 @@ class ExtraFragment : Fragment() {
 
     private fun initMap(adapter: ExtraEntryAdapter?) {
         extraEntryList.init()
+
         time = 0
         timerTask = timer(period = 1000) {
             time++
