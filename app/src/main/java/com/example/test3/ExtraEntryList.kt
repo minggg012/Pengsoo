@@ -123,7 +123,8 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             for (j in -1..1) {
                 if (x+i < 0 || x+i >= 10) continue
                 if (y+j < 0 || y+j >= 10) continue
-                recursiveDiscover(context, adapter, entryList, x+i + 10*(y+j))
+                Handler(
+                    Looper.getMainLooper()).postDelayed({recursiveDiscover(context, adapter, entryList, x+i + 10*(y+j))}, 5)
             }
         }
     }
