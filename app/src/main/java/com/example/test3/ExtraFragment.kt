@@ -17,13 +17,16 @@ class ExtraFragment : Fragment() {
 
     private var entryList = ArrayList<ExtraEntry>()
     private var extraEntryList = ExtraEntryList(entryList, 0, 0)
+    private lateinit var rootView: View
+
     var failList = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         extraEntryList = ExtraEntryList(entryList, 0, 0)
         initMap(null)
 
-        return inflater.inflate(R.layout.fragment_extra, container, false)
+        rootView = inflater.inflate(R.layout.fragment_extra, container, false)
+        return rootView
 
     }
 
@@ -37,12 +40,13 @@ class ExtraFragment : Fragment() {
         val adapter = ExtraEntryAdapter(entryList)
         adapter.setItemClickListener(object: ExtraEntryAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                extraEntryList.clickEntry(v, position, requireContext(), adapter, entryList)
+                extraEntryList.clickEntry(rootView, position, requireContext(), adapter, entryList)
+
             }
         })
         adapter.setItemLongClickListener(object: ExtraEntryAdapter.OnItemLongClickListener {
             override fun onLongClick(v: View, position: Int): Boolean {
-                extraEntryList.longClickEntry(v, position, requireContext(), adapter, entryList)
+                extraEntryList.longClickEntry(rootView, position, requireContext(), adapter, entryList)
                 return true
             }
         })

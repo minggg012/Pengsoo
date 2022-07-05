@@ -15,7 +15,7 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
         numOfDiscovered = 0
         numOfFlag = 0
     }
-    fun clickEntry (v: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
+    fun clickEntry (rootView: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
         val item = entryList[position]
         if (!item.isCovered) return
 
@@ -24,12 +24,9 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             explosion (context, adapter, entryList, position, 1)
         else
             recursiveDiscover(context, adapter, entryList, position)
-//        if (numOfDiscovered == 90) {
-//            Succeed(context, adapter, entryList,0)
-//        }
     }
 
-    fun longClickEntry (v: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
+    fun longClickEntry (rootView: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
         val item = entryList[position]
         if (!item.isCovered) return
 
@@ -43,7 +40,7 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             numOfFlag += 1
         }
         adapter.notifyItemChanged(position)
-        // v.remaining_mine.setText((10-numOfFlag).toString())
+        rootView.remaining_mine.setText((10-numOfFlag).toString())
     }
 
 
