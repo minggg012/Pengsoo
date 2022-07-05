@@ -69,10 +69,10 @@ class ExtraFragment : Fragment() {
                 Toast.makeText(context, "RESET!!!", Toast.LENGTH_SHORT).show()
                 timerTask?.cancel()
                 time = 0
+                remaining_mine.text = "10"
                 passed_minute.text = "0"
                 passed_second.text = "0"
                 initMap(adapter)
-                rootView.remaining_mine.setText("10")
             }
         }
 
@@ -97,8 +97,10 @@ class ExtraFragment : Fragment() {
             var min = time/60
             val sec = time % 60
             activity?.runOnUiThread {
-                passed_minute.text = "${min}"
-                passed_second.text = "${sec}"
+//                passed_minute.text = "${min}"
+//                passed_second.text = "${sec}"
+                rootView.passed_minute.text = "${min}"
+                rootView.passed_second.text = "${sec}"
             }
         }
         val range1 = (1..4)

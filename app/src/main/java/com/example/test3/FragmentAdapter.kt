@@ -5,7 +5,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
-    //position 에 따라 원하는 Fragment로 이동시키기
+
+    // move to desired Fragment according to the POSITION
     override fun getItem(position: Int): androidx.fragment.app.Fragment {
         val fragment =  when(position)
         {
@@ -17,10 +18,10 @@ class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
         return fragment
     }
 
-    //tab의 개수만큼 return
+    // return the number of tabs
     override fun getCount(): Int = 3
 
-    //tab의 이름 fragment마다 바꾸게 하기
+    // set the name of tabs
     override fun getPageTitle(position: Int): CharSequence? {
         val title = when(position)
         {

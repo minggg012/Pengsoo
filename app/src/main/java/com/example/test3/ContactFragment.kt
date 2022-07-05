@@ -19,14 +19,13 @@ class ContactFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        jsonParsing(getJsonString())
-
         return inflater.inflate(R.layout.fragment_contact, container, false)
     }
 
     override fun onStart() {
         super.onStart()
 
+        jsonParsing(getJsonString())
         val adapter = ContactsListAdapter(contactsList)
         adapter.setItemClickListener(object: ContactsListAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {

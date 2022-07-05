@@ -10,14 +10,6 @@ class ExtraViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
     fun bind(item: ExtraEntry) {
 
-        /*
-        if (item.isCovered && item.isFlag) { // print flag
-        }
-        else if (item.isFlag) { //
-        }
-
-         */
-
         if (!item.isCovered) { // covered
             val index = item.numOfMine
             when(index) {
