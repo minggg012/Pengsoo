@@ -20,16 +20,14 @@ class GalleryAdapter(private val imagesPhoto: List<GalleryFragment.Images>) :
 
     override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
         val item = imagesPhoto[position]
-        val adapter = this
 
-
-        holder.imagee.setImageResource(item.image)
+        holder.image.setImageResource(item.image)
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
-//        holder.itemView.setOnLongClickListener {
-//            longClickListener.onLongClick(it, position)
-//        }
+        holder.itemView.setOnLongClickListener {
+            itemLongClickListener.onLongClick(it, position)
+        }
 
     }
     interface OnItemClickListener {
@@ -43,10 +41,10 @@ class GalleryAdapter(private val imagesPhoto: List<GalleryFragment.Images>) :
     interface OnItemLongClickListener {
         fun onLongClick(v: View, position: Int): Boolean
     }
-    private lateinit var longClickListener : OnItemLongClickListener
+    private lateinit var itemLongClickListener : OnItemLongClickListener
 
-    fun setItemLongClickListener(longClickListener: OnItemLongClickListener) {
-        this.longClickListener = longClickListener
+    fun setItemLongClickListener(itemLongClickListener: OnItemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener
     }
 
 
