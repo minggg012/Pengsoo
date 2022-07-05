@@ -11,7 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_extra.*
 import kotlinx.android.synthetic.main.item_extra.view.*
 import java.security.KeyStore
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
+var timerTask : Timer? = null
+var time = 0
 
 class ExtraFragment : Fragment() {
 
@@ -61,6 +65,10 @@ class ExtraFragment : Fragment() {
 
         reset.setOnClickListener {
             Toast.makeText(context, "RESET!!!", Toast.LENGTH_SHORT).show()
+            timerTask?.cancel()
+            time = 0
+            passed_minute.text = "0"
+            passed_second.text = "0"
             initMap(adapter)
         }
 
@@ -74,18 +82,46 @@ class ExtraFragment : Fragment() {
         return frag
     }
 
+
+
     private fun initMap(adapter: ExtraEntryAdapter?) {
         extraEntryList.init()
-
-        timer(period = 100) {
-
+        time = 0
+        timerTask = timer(period = 1000) {
+            time++
+            var min = time/60
+            val sec = time % 60
+            activity?.runOnUiThread {
+                passed_minute.text = "${min}"
+                passed_second.text = "${sec}"
+            }
         }
+        val range1 = (1..4)
+        val fail1 = range1.random()
+        val range2 = (1..2)
+        val succeed1 = range2.random()
         for (i in 0 until 100) {
             val num = i+1
             val z = "00$num"
             val zz = z.substring(z.length-3 until z.length)
-            val fail = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
-            val succeed = resources.getIdentifier("@drawable/t_"+zz, "drawable", requireActivity().packageName)
+
+            var fail : Int? = null
+            when (fail1) {
+                1 -> fail = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
+                2 -> fail = resources.getIdentifier("@drawable/b_"+zz, "drawable", requireActivity().packageName)
+                3 -> fail = resources.getIdentifier("@drawable/e_"+zz, "drawable", requireActivity().packageName)
+                4 -> fail = resources.getIdentifier("@drawable/h_"+zz, "drawable", requireActivity().packageName)
+                else -> fail = resources.getIdentifier("@drawable/z_"+zz, "drawable", requireActivity().packageName)
+            }
+
+
+            var succeed : Int? = null
+            when(succeed1) {
+                1 -> succeed = resources.getIdentifier("@drawable/t_"+zz, "drawable", requireActivity().packageName)
+                2-> succeed = resources.getIdentifier("@drawable/m_"+zz, "drawable", requireActivity().packageName)
+                else -> succeed = resources.getIdentifier("@drawable/t_"+zz, "drawable", requireActivity().packageName)
+            }
+
             val entry = ExtraEntry(true, false, 0, fail, succeed)
             entryList.add(entry)
             if (adapter != null)

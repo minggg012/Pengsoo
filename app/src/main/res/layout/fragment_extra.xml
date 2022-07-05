@@ -112,7 +112,7 @@
             android:id="@+id/reset"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/k"
+            android:src="@drawable/r"
             android:scaleType="centerCrop"/>
     </androidx.cardview.widget.CardView>
 
