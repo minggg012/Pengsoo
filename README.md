@@ -59,9 +59,15 @@
 - 길게 클릭하여 flag를 세우거나 없앨 수 있습니다.
   - flag를 세울 때마다 remaining mines의 개수가 1씩 작아집니다.
 - 게임이 끝나는 조건
-  - 폭탄을 뒤집은 경우 'FAIL' 메시지가 뜨며 그에 해당하는 이미지로 바뀝니다.
-  - 폭탄을 제외한 모든 entry를 뒤집은 경우 'SUCCEED' 메시지가 뜨며 그에 해당하는 이미지로 바뀝니다.
+  - 지뢰를 뒤집은 경우 'FAIL' 메시지가 뜨며 그에 해당하는 이미지로 바뀝니다.
+  - 지뢰를 제외한 모든 entry를 뒤집은 경우 'SUCCEED' 메시지가 뜨며 그에 해당하는 이미지로 바뀝니다.
 - 위쪽 가운데에 있는 펭수 이미지를 눌러 게임을 새로 시작할 수 있습니다.
 
 #### Implementation Methods
-
+- Recycler View와 GridLayoutManager를 이용하여 지뢰찾기 맵을 보여준다. 
+  - Map이 initialize될 때
+    - random()을 이용하여 지뢰의 위치와 게임 성공/실패시 뜰 이미지가 랜덤하게 정해지도록 한다.
+    - timer를 0으로 설정한다.
+- ClickListener를 이용하여 entry를 짧게 클릭한 경우 adapter.notifyItemChanged()를 이용하여 해당 entry에 해당하는 이미지(지뢰, 숫자, 빈땅)가 뜨도록 한다.
+- LongClickListener를 이용하여 entry를 길게 클릭한 경우 adapter.notifyItemChanged()를 이용하여 flag가 뜨도록 한다.
+- ClickListener를 이용하여 reset(펭수 이미지)을 클릭한 경우 map을 initialize한다.
