@@ -111,9 +111,9 @@ class ExtraFragment : Fragment() {
             rootView.passed_minute.text = "0"
             rootView.passed_second.text = "0"
             rootView.remaining_mine.text = "10"
-            val range1 = (1..4)
+            val range1 = (1..5)
             val fail1 = range1.random()
-            val range2 = (1..2)
+            val range2 = (1..5)
             val succeed1 = range2.random()
             for (i in 0 until 100) {
                 val num = i + 1
@@ -142,6 +142,11 @@ class ExtraFragment : Fragment() {
                         "drawable",
                         requireActivity().packageName
                     )
+                    5 -> fail = resources.getIdentifier(
+                        "@drawable/aa_" + zz,
+                        "drawable",
+                        requireActivity().packageName
+                    )
                     else -> fail = resources.getIdentifier(
                         "@drawable/z_" + zz,
                         "drawable",
@@ -159,6 +164,21 @@ class ExtraFragment : Fragment() {
                     )
                     2 -> succeed = resources.getIdentifier(
                         "@drawable/m_" + zz,
+                        "drawable",
+                        requireActivity().packageName
+                    )
+                    3 -> succeed = resources.getIdentifier(
+                        "@drawable/w_" + zz,
+                        "drawable",
+                        requireActivity().packageName
+                    )
+                    4 -> succeed = resources.getIdentifier(
+                        "@drawable/x_" + zz,
+                        "drawable",
+                        requireActivity().packageName
+                    )
+                    5 -> succeed = resources.getIdentifier(
+                        "@drawable/y_" + zz,
                         "drawable",
                         requireActivity().packageName
                     )
