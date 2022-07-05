@@ -34,6 +34,7 @@ class ContactFragment : Fragment() {
                 nextIntent.putExtra("email", contactsList[position].email)
                 nextIntent.putExtra("phone", contactsList[position].phone)
                 nextIntent.putExtra("website", contactsList[position].website)
+                nextIntent.putExtra("image", contactsList[position].image)
                 startActivity(nextIntent)
             }
         })
@@ -80,7 +81,9 @@ class ContactFragment : Fragment() {
                 val contactObject: JSONObject = contactArray.getJSONObject(i)
 
                 val contact = Contacts(contactObject.getString("name"), contactObject.getString("email")
-                    ,contactObject.getString("phone"), contactObject.getString("website"), contactObject.toString())
+                    ,contactObject.getString("phone"), contactObject.getString("website")
+                    ,resources.getIdentifier(contactObject.getString("profile"), "drawable", requireActivity().packageName)
+                    ,contactObject.toString())
                 contactsList.add(contact)
             }
         } catch (e: JSONException) {

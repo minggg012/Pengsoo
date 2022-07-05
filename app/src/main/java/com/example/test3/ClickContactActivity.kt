@@ -2,6 +2,7 @@ package com.example.test3
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 
 class ClickContactActivity : AppCompatActivity() {
@@ -13,10 +14,12 @@ class ClickContactActivity : AppCompatActivity() {
         var email = findViewById<TextView>(R.id.contact_email)
         var phone = findViewById<TextView>(R.id.contact_phone)
         var website = findViewById<TextView>(R.id.contact_website)
+        var image = findViewById<ImageView>(R.id.contact_image)
 
         name.text = intent.getStringExtra("name")
         email.text = intent.getStringExtra("email")
         phone.text = intent.getStringExtra("phone")
         website.text = intent.getStringExtra("website")
+        image.setImageResource(intent.getIntExtra("image", 1))
     }
 }
