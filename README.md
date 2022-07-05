@@ -21,12 +21,14 @@
 
 #### Major Features
 - 위 아래로 스와이프하여 모든 연락처를 확인할 수 있습니다.
-- 연락처를 길게 클릭하여 원본 Json file을 확인할 수 있습니다.
+- 연락처를 길게 클릭하여 원본 json file을 확인할 수 있습니다.
 - 연락처를 짧게 클릭하여 상세정보를 확인할 수 있습니다.
 
 #### Implementation Methods
 - Recycler View를 이용하여 연락처를 보여준다.
-- 연락처는 j
+- json file 형식으로 데이터를 받아와 연락처와 상세정보를 구성한다.
+- ClickListner를 이용해 연락처를 짧게 클릭한 경우 해당 연락처의 상세정보를 보여주는 subActivity를 띄운다.
+- LongClickListner를 이용해 연락처를 길게 클릭한 경우 해당 연락처의 원본 json file을 보여주는 toast를 띄운다. 
 
 ------------------
 
