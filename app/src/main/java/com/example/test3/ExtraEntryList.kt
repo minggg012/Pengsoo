@@ -29,8 +29,6 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
             explosion(context, adapter, entryList, position, 1)
         else
             recursiveDiscover(context, adapter, entryList, position)
-        onEvent = false
-        println("------------------------onEvent = false------------------------")
     }
 
     fun longClickEntry (rootView: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {
@@ -80,6 +78,8 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
     }
     private fun Succeed(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
         if (position == 100) {
+            onEvent = false
+            println("------------------------onEvent = false------------------------")
             return
         }
         else {
@@ -98,6 +98,8 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
     }
     private fun Fail(context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>, position: Int) {
         if (position == 100) {
+            onEvent = false
+            println("------------------------onEvent = false------------------------")
             return
         }
         else {
