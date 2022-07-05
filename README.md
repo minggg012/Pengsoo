@@ -39,7 +39,10 @@
 - 사진을 길게 클릭하여 사진을 삭제할 수 있습니다.
 
 #### Implementation Methods
--
+- Recycler View와 GridLayoutManager를 이용하여 갤러리에 있는 사진들을 grid 형식으로 보여주고, 위 아래로 스와이프할 수 있도록 한다.
+- ClickListener를 이용해 사진을 짧게 클릭한 경우 사진이 크게 보이게 하는 subActivity를 띄운다.
+  - 해당 Activity에서 toolbar와 menu를 이용하여 inform을 눌렀을 때 사진에 해당하는 정보를 다이얼로그 창에 띄운다.
+- LongClickListner를 이용해 사진을 길게 클릭한 경우 사진이 들어있는 dataset에서 해당 사진을 삭제한 후 adapter.notifyDataSetChanged()를 이용하여 갤러리를 재구성한다.
 
 ----------------------
 
