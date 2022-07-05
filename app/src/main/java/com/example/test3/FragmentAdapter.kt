@@ -24,10 +24,10 @@ class FragmentAdapter (fm : FragmentManager): FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
         val title = when(position)
         {
-            0->"0ne"
-            1->"Two"
-            2->"Three"
-            else -> "main"
+            0->"CONTACTS"
+            1->"GALLERY"
+            2->"MINESWEEPER"
+            else -> "MAIN"
         }
         return title     }
 }
