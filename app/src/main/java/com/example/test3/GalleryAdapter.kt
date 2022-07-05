@@ -40,12 +40,12 @@ class GalleryAdapter(private val imagesPhoto: List<GalleryFragment.Images>) :
     fun setItemClickListener(itemClickListener: OnItemClickListener) {
         this.itemClickListener = itemClickListener
     }
-    interface OnLongClickListener {
-        fun onLongClick(v: View, position: Int)
+    interface OnItemLongClickListener {
+        fun onLongClick(v: View, position: Int): Boolean
     }
-    private lateinit var longClickListener : OnLongClickListener
+    private lateinit var longClickListener : OnItemLongClickListener
 
-    fun setOnLongClickListener(longClickListener: OnLongClickListener) {
+    fun setItemLongClickListener(longClickListener: OnItemLongClickListener) {
         this.longClickListener = longClickListener
     }
 
