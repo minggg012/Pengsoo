@@ -11,7 +11,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timerTask
 
-class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDiscovered: Int, var numOfFlag: Int) {
+class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDiscovered: Int, var numOfFlag: Int, var onEvent: Boolean) {
 
     fun init () {
         entryList.clear()
@@ -23,10 +23,14 @@ class ExtraEntryList(private var entryList: ArrayList<ExtraEntry>, var numOfDisc
         if (!item.isCovered) return
 
         // else
+        onEvent = true
+        println("------------------------onEvent = true------------------------")
         if (item.numOfMine == -1)
-            explosion (context, adapter, entryList, position, 1)
+            explosion(context, adapter, entryList, position, 1)
         else
             recursiveDiscover(context, adapter, entryList, position)
+        onEvent = false
+        println("------------------------onEvent = false------------------------")
     }
 
     fun longClickEntry (rootView: View, position: Int, context: Context, adapter: ExtraEntryAdapter, entryList: ArrayList<ExtraEntry>) {

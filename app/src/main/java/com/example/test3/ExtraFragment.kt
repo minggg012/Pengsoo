@@ -21,13 +21,13 @@ var time = 0
 class ExtraFragment : Fragment() {
 
     private var entryList = ArrayList<ExtraEntry>()
-    private var extraEntryList = ExtraEntryList(entryList, 0, 0)
+    private lateinit var extraEntryList: ExtraEntryList
     private lateinit var rootView: View
 
     var failList = ArrayList<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        extraEntryList = ExtraEntryList(entryList, 0, 0)
+        extraEntryList = ExtraEntryList(entryList, 0, 0, false)
         initMap(null)
 
         rootView = inflater.inflate(R.layout.fragment_extra, container, false)
@@ -65,13 +65,15 @@ class ExtraFragment : Fragment() {
         grid_test.adapter = adapter
 
         reset.setOnClickListener {
-            Toast.makeText(context, "RESET!!!", Toast.LENGTH_SHORT).show()
-            timerTask?.cancel()
-            time = 0
-            passed_minute.text = "0"
-            passed_second.text = "0"
-            initMap(adapter)
-            rootView.remaining_mine.setText("10")
+            if (!extraEntryList.onEvent) {
+                Toast.makeText(context, "RESET!!!", Toast.LENGTH_SHORT).show()
+                timerTask?.cancel()
+                time = 0
+                passed_minute.text = "0"
+                passed_second.text = "0"
+                initMap(adapter)
+                rootView.remaining_mine.setText("10")
+            }
         }
 
     }
